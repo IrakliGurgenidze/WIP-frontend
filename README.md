@@ -12,3 +12,7 @@ Work so far:
     - Footer
     - Layout for consistent page padding and structure.
 - Set up initial pages (Home, About, Blog, RecruiterLogin, StudentLogin) for navigation flow testing.
+
+Issues:
+- Styling needs a lot of work. I have an idea on how I want it to look, but execution will take some time.
+- Also need to begin adding student/recruiter login pages and api integration for content fetching.
