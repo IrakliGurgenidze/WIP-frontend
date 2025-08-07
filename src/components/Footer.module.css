@@ -1,0 +1,15 @@
+.footer {
+  width: 100%;
+  background-color: var(--color-bg-light);
+  border-top: 1px solid var(--color-bg-dark);
+}
+
+.innerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8px 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

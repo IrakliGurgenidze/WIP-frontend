@@ -1,0 +1,10 @@
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Standard text styling for all pages */
+.page-container .mantine-Text-root {
+  color: black !important;
+}

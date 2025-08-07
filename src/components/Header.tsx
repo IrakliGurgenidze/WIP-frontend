@@ -1,80 +1,70 @@
 import React, { useState } from "react";
-import { AppShell, Anchor, Container, Group, Text, Box, Burger, Divider } from "@mantine/core";
+import { Anchor, Container, Group, Box, Burger, Divider, Button } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./Header.module.css";
 
+const topLinks = [
+  { label: "Home", link: "/" },
+  { label: "About", link: "/about" },
+];
+
+const mainLinks = [
+  { label: "Blog", link: "/blog" },
+  { label: "Contact", link: "/contact" },
+];
+
 export default function Header() {
   const [opened, { toggle }] = useDisclosure(false);
-  const [active, setActive] = useState<string | null>(null);
+  const [active, setActive] = useState(0);
 
-  const topLinks = [
-    { label: "Home", link: "/" },
-    { label: "About", link: "/about" },
-  ];
+  const topItems = topLinks.map((item, index) => (
+    <Anchor<'a'>
+      href={item.link}
+      key={index}
+      className={classes.topLinks}
+      data-active={index === active || undefined}
+      onClick={() => setActive(index)}
+    >
+      {item.label}
+    </Anchor>
+  ));
 
-  const mainLinks = [
-    { label: "Blog", link: "/blog" },
-    { label: "Contact", link: "/contact" },
-  ];
+  const mainItems = mainLinks.map((item, index) => (
+    <Anchor
+      href={item.link}
+      key={item.label}
+      className={classes.mainLink}
+    >
+      {item.label}
+    </Anchor>
+  ));
 
   return (
-    <AppShell.Header className={classes.header}>
-      {/* --- TOP BAR --- */}
-      <Box className={classes.topbar}>
-        <Container size="xl" className={classes.innerTop}>
-          <Group gap="lg">
-            {topLinks.map((item) => (
-              <Anchor
-                key={item.label}
-                href={item.link}
-                c="white"
-                fw={500}
-                className={classes.secondaryLink}
-              >
-                {item.label}
-              </Anchor>
-            ))}
-          </Group>
-          <Group gap="lg">
-            <Anchor href="/login" c="white" className={classes.secondaryLink}>
-              Login
-            </Anchor>
-          </Group>
+    <Box component="header" className={classes.header}>
+      <Box className={classes.topWrapper}>
+        <Container size="lg" className={classes.innerContainer}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Group justify="flex-start" gap={32}>
+              {topItems}
+            </Group>
+            <Button variant="outline" color="blue" size="md">
+              Log In
+            </Button>
+          </div>
         </Container>
       </Box>
-
-      {/* --- MAIN HEADER --- */}
-      <Container size="xl" className={classes.innerMain}>
-        <Text fz="xl" fw={700} c="var(--color-neutral)">
-          Apture
-        </Text>
-        <Box className={classes.links} visibleFrom="sm">
-          <Group gap={0} className={classes.mainLinks}>
-            {mainLinks.map((item) => (
-              <Anchor
-                key={item.label}
-                href={item.link}
-                className={classes.mainLink}
-                data-active={active === item.label || undefined}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setActive(item.label);
-                }}
-              >
-                {item.label}
-              </Anchor>
-            ))}
-          </Group>
-        </Box>
-        <Burger
-          opened={opened}
-          onClick={toggle}
-          className={classes.burger}
-          size="sm"
-          hiddenFrom="sm"
-        />
-      </Container>
-      <Divider />
-    </AppShell.Header>
+      <Box className={classes.mainWrapper}>
+        <Container size="lg" className={classes.innerContainer}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Anchor href="/" className={classes.logo}>
+              <img src="/logo.png" alt="Logo" height={80} />
+            </Anchor>
+            <Group gap={32}>
+              {mainItems}
+            </Group>
+          </div>
+        </Container>
+      </Box>
+    </Box>
   );
 }

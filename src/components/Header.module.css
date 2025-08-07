@@ -1,63 +1,89 @@
 .header {
+  width: 100%;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--mantine-color-gray-3);
+}
+
+/* Wrapper styles */
+.topWrapper, .mainWrapper {
+  width: 100%;
+}
+
+.topWrapper {
   background-color: var(--color-bg-dark);
-  border-bottom: 1px solid var(--mantine-color-gray-3); /* or a hex color */
 }
 
-.topbar {
-  background-color: var(--mantine-color-dark-6);
-  color: var(--color-neutral);
-  padding: 6px 0;
+.mainWrapper {
+  background-color: var(--color-bg-light);
+  padding: 16px 0;  /* Added padding to give more vertical space */
 }
 
-.innerTop {
+/* Container style */
+.innerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8px 24px;
+}
+
+/* Group styles */
+.linksGroup {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  width: 100%;
+  justify-content: center;
+  gap: 32px;  /* This controls space between items */
+  align-items: center; /* Vertically align items */
 }
 
-.innerMain {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-  padding: 12px 0;
-}
-
-.links {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.mainLinks {
-  margin-right: calc(var(--mantine-spacing-sm) * -1);
-}
-
-.mainLink {
+/* Link base styles */
+.topLinks, .mainLink {
   text-transform: uppercase;
   font-size: var(--mantine-font-size-xs);
-  color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-1));
-  padding: 7px var(--mantine-spacing-sm);
+  padding: 7px 0;  /* Removed horizontal padding */
   font-weight: 700;
   border-bottom: 2px solid transparent;
   transition: border-color 100ms ease, color 100ms ease;
+  letter-spacing: 0.5px;
 }
 
+/* Specific link styles */
+.topLinks {
+  color: var(--color-neutral);
+  margin-right: 16px; /* Add gap here */
+}
+
+.topLinks:last-child {
+  margin-right: 0; /* Remove gap from the last item */
+}
+
+.mainLink {
+  color: var(--color-bg-dark);
+  margin-right: 16px; /* Add gap here */
+  font-size: var(--mantine-font-size-md); /* Increased font size */
+}
+
+.mainLink:last-child {
+  margin-right: 0; /* Remove gap from the last item */
+}
+
+/* Hover states */
+.topLinks:hover,
 .mainLink:hover {
-  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
   text-decoration: none;
+  border-bottom-color: var(--color-accent);
 }
 
+/* Active state */
 .mainLink[data-active] {
-  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
-  border-bottom-color: var(--mantine-color-blue-6);
+  border-bottom-color: var(--color-accent);
 }
 
-.secondaryLink {
-  font-size: var(--mantine-font-size-xs);
-  text-transform: uppercase;
+.logo {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
 }
 
-.burger {
-  margin-left: auto;
+.logo:hover {
+  opacity: 0.9;
+  text-decoration: none;
 }
