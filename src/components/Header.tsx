@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Anchor, Container, Group, Box, Burger, Divider, Button } from "@mantine/core";
+import { Anchor, Container, Group, Box, Button } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./Header.module.css";
 
@@ -9,6 +9,7 @@ const topLinks = [
 ];
 
 const mainLinks = [
+  { label: "Features", link: "/about" },
   { label: "Blog", link: "/blog" },
   { label: "Contact", link: "/contact" },
 ];
@@ -22,6 +23,7 @@ export default function Header() {
       href={item.link}
       key={index}
       className={classes.topLinks}
+      style={{ fontSize: '1.2rem', fontWeight: 'bold' }}
       data-active={index === active || undefined}
       onClick={() => setActive(index)}
     >
@@ -34,10 +36,15 @@ export default function Header() {
       href={item.link}
       key={item.label}
       className={classes.mainLink}
+      style={{ fontSize: '1.5rem', fontWeight: 'bold' }}
     >
       {item.label}
     </Anchor>
   ));
+
+  const handleLogin = () => {
+    alert("Log In functionality coming soon!");
+  };
 
   return (
     <Box component="header" className={classes.header}>
@@ -47,7 +54,7 @@ export default function Header() {
             <Group justify="flex-start" gap={32}>
               {topItems}
             </Group>
-            <Button variant="outline" color="blue" size="md">
+            <Button className="transparent-button" size="sm" onClick={handleLogin}>
               Log In
             </Button>
           </div>
@@ -59,7 +66,7 @@ export default function Header() {
             <Anchor href="/" className={classes.logo}>
               <img src="/logo.png" alt="Logo" height={80} />
             </Anchor>
-            <Group gap={32}>
+            <Group gap={48}>
               {mainItems}
             </Group>
           </div>
