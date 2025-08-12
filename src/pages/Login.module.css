@@ -1,0 +1,60 @@
+.loginContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.loginTitle {
+  font-size: 42pt;
+  text-align: center;
+  color: var(--color-neutral);
+  margin-bottom: 2rem;
+}
+
+.loginForm {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.formInput {
+  font-size: 16pt;
+  margin-bottom: 1rem;
+}
+
+.submitButton {
+  font-size: 16pt;
+  padding: 12px 24px;
+  width: 100%;
+}
+
+.linkText {
+  font-size: 14pt;
+  text-align: center;
+  color: var(--color-neutral);
+  margin-top: 1rem;
+}
+
+.linkText a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.linkText a:hover {
+  text-decoration: underline;
+}
+
+.alertMessage {
+  margin-bottom: 1rem;
+}
+
+.spacingLarge {
+  margin-bottom: 2rem;
+}
+
+.spacingMedium {
+  margin-bottom: 1rem;
+}
+
+.spacingSmall {
+  margin-bottom: 0.5rem;
+}

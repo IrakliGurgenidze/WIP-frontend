@@ -20,8 +20,8 @@ import './page.css';
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <AppShell
-      header={{ height: 60 }}
-      footer={{ height: 60 }}
+      header={{ height: 120 }}
+      footer={{ height: 30 }}
       padding={0}
       styles={{
         main: {

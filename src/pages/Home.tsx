@@ -6,23 +6,23 @@ export default function Home() {
     <Container>
       <Title
         style={{
-          fontSize: '42pt',
+          fontSize: '32pt',
           textAlign: 'justify',
           color: 'var(--color-neutral)',
         }}
       >
-        Welcome to Apture - <br /> The recruitment platform of the Future.
+        <br /> Welcome to Apture - <br /> The recruitment platform of the Future. <br />
       </Title>
 
       <Text
         style={{
-          fontSize: '24pt',
+          fontSize: '16pt',
           lineHeight: 1.5,
           textAlign: 'justify',
           color: 'black',
         }}
       >
-        Apture is an early-career recruitment platform designed to put recruiters back in control of talent discovery. <br /><br />
+        <br /> Apture is an early-career recruitment platform designed to put recruiters back in control of talent discovery. <br /><br />
         Today's hiring market is noisy and inefficient - qualified candidates often go unnoticed, while recruiters
         spend countless hours sifting through irrelevant or low-quality applications. Apture flips the traditional
         process on its head, giving recruiters precision tools and intelligent filters to proactively connect with

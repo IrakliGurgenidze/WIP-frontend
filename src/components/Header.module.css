@@ -1,89 +1,124 @@
 .header {
-  width: 100%;
-  margin-bottom: 10px;
-  border-bottom: 1px solid var(--mantine-color-gray-3);
+    width: 100%;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--mantine-color-gray-3);
+    position: relative;
+    z-index: 100;
 }
 
 /* Wrapper styles */
-.topWrapper, .mainWrapper {
-  width: 100%;
+.topWrapper,
+.mainWrapper {
+    width: 100%;
 }
 
 .topWrapper {
-  background-color: var(--color-bg-dark);
+    background-color: var(--color-bg-dark);
+    position: relative;
+    z-index: 101;
 }
 
 .mainWrapper {
-  background-color: var(--color-bg-light);
-  padding: 16px 0;  /* Added padding to give more vertical space */
+    background-color: var(--color-bg-light);
+    padding: 0 0;
+    /* No vertical padding */
+    position: relative;
+    z-index: 100;
 }
 
 /* Container style */
 .innerContainer {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 8px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8px 24px;
+    position: relative;
 }
 
-/* Group styles */
-.linksGroup {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  gap: 32px;  /* This controls space between items */
-  align-items: center; /* Vertically align items */
+/* Layout containers */
+.topContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mainContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Navigation groups */
+.topLinksGroup {
+    display: flex;
+    gap: 32px;
+}
+
+.mainLinksGroup {
+    display: flex;
+    gap: 48px;
 }
 
 /* Link base styles */
-.topLinks, .mainLink {
-  text-transform: uppercase;
-  font-size: var(--mantine-font-size-xs);
-  padding: 7px 0;  /* Removed horizontal padding */
-  font-weight: 700;
-  border-bottom: 2px solid transparent;
-  transition: border-color 100ms ease, color 100ms ease;
-  letter-spacing: 0.5px;
+.topLinks,
+.mainLink {
+    text-transform: uppercase;
+    padding: 7px 0;
+    font-weight: 700;
+    border-bottom: 2px solid transparent;
+    transition: border-color 100ms ease, color 100ms ease;
+    letter-spacing: 0.5px;
 }
 
 /* Specific link styles */
 .topLinks {
-  color: var(--color-neutral);
-  margin-right: 16px; /* Add gap here */
-}
-
-.topLinks:last-child {
-  margin-right: 0; /* Remove gap from the last item */
+    color: var(--color-neutral);
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 .mainLink {
-  color: var(--color-bg-dark);
-  margin-right: 16px; /* Add gap here */
-  font-size: var(--mantine-font-size-md); /* Increased font size */
-}
-
-.mainLink:last-child {
-  margin-right: 0; /* Remove gap from the last item */
+    color: var(--color-bg-dark);
+    font-size: 1.25rem;
+    font-weight: bold;
 }
 
 /* Hover states */
 .topLinks:hover,
 .mainLink:hover {
-  text-decoration: none;
-  border-bottom-color: var(--color-accent);
+    text-decoration: none;
+    border-bottom-color: var(--color-accent);
 }
 
 /* Active state */
 .mainLink[data-active] {
-  border-bottom-color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
 }
 
+/* Logo */
 .logo {
-  display: flex;
-  align-items: center;
-  padding: 8px 0;
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
 }
 
 .logo:hover {
-  opacity: 0.9;
-  text-decoration: none;
+    opacity: 0.9;
+    text-decoration: none;
+}
+
+.logo img {
+    height: 50px;
+    /* Reduced from 80px */
+}
+
+/* Login button */
+.loginButton {
+    position: relative;
+    font-size: 0.65rem;
+    z-index: 10;
+}
+
+/* Menu styles */
+.loginMenu {
+    /* Custom menu positioning handled by Mantine */
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Title, Text, Container, TextInput, PasswordInput, Button, Alert, Space } from '@mantine/core'
 import classes from './Login.module.css'
 
-export default function RecruiterLogin() {
+export default function ApplicantLogin() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -34,20 +34,21 @@ export default function RecruiterLogin() {
         console.log('Full user data:', data.user)
 
         // Validate that the user role matches the login page
-        if (userRole !== 'recruiter') {
-          setError('This account is not a recruiter account. Please use the applicant login.')
+        if (userRole !== 'applicant') {
+          setError('This account is not an applicant account. Please use the recruiter login.')
           setLoading(false)
           return
         }
 
         setSuccess('Login successful!')
-        localStorage.setItem('recruiterToken', data.token)
-        localStorage.setItem('userType', 'recruiter')
-        window.location.href = '/recruiter/dashboard'
+        localStorage.setItem('applicantToken', data.token)
+        localStorage.setItem('userType', 'applicant')
+        window.location.href = '/applicant/dashboard'
       } else {
         setError(data.message || 'Login failed')
       }
     } catch (err) {
+      console.error('Login error:', err)
       setError('Network error. Please try again.')
     } finally {
       setLoading(false)
@@ -56,7 +57,9 @@ export default function RecruiterLogin() {
 
   return (
     <Container className={classes.loginContainer}>
-      <Title className={classes.loginTitle}>Recruiter Login</Title>
+      <Title className={classes.loginTitle}>
+        Applicant Login
+      </Title>
 
       <div className={classes.loginForm}>
         {error && (
@@ -74,7 +77,7 @@ export default function RecruiterLogin() {
         <form onSubmit={handleLogin}>
           <TextInput
             label="Email"
-            placeholder="your.email@company.com"
+            placeholder="your.email@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -95,18 +98,22 @@ export default function RecruiterLogin() {
             loading={loading}
             className={`transparent-button ${classes.submitButton}`}
           >
-            Log In as Recruiter
+            Log In as Applicant
           </Button>
         </form>
 
         <Text className={classes.linkText}>
           Don't have an account?{' '}
-          <a href="/recruiter-signup">Sign up here</a>
+          <a href="/applicant-signup">
+            Sign up here
+          </a>
         </Text>
 
         <Text className={classes.linkText}>
-          Are you a student?{' '}
-          <a href="/student-login">Login here</a>
+          Are you a recruiter?{' '}
+          <a href="/recruiter-login">
+            Login here
+          </a>
         </Text>
       </div>
     </Container>

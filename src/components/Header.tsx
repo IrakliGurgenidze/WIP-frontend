@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Anchor, Container, Group, Box, Button } from "@mantine/core";
+import { Anchor, Container, Group, Box, Button, Menu } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+import { isAuthenticated, getUserType, logout } from "../utils/auth";
 import classes from "./Header.module.css";
 
 const topLinks = [
@@ -17,13 +18,14 @@ const mainLinks = [
 export default function Header() {
   const [opened, { toggle }] = useDisclosure(false);
   const [active, setActive] = useState(0);
+  const authenticated = isAuthenticated();
+  const userType = getUserType();
 
   const topItems = topLinks.map((item, index) => (
     <Anchor<'a'>
       href={item.link}
       key={index}
       className={classes.topLinks}
-      style={{ fontSize: '1.2rem', fontWeight: 'bold' }}
       data-active={index === active || undefined}
       onClick={() => setActive(index)}
     >
@@ -36,37 +38,131 @@ export default function Header() {
       href={item.link}
       key={item.label}
       className={classes.mainLink}
-      style={{ fontSize: '1.5rem', fontWeight: 'bold' }}
     >
       {item.label}
     </Anchor>
   ));
 
-  const handleLogin = () => {
-    alert("Log In functionality coming soon!");
+  const handleLogout = () => {
+    logout();
   };
 
   return (
     <Box component="header" className={classes.header}>
       <Box className={classes.topWrapper}>
         <Container size="lg" className={classes.innerContainer}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Group justify="flex-start" gap={32}>
+          <div className={classes.topContainer}>
+            <Group className={classes.topLinksGroup}>
               {topItems}
             </Group>
-            <Button className="transparent-button" size="sm" onClick={handleLogin}>
-              Log In
-            </Button>
+            
+            {authenticated ? (
+              <Menu 
+                shadow="md" 
+                width={200}
+                position="bottom-end"
+                offset={5}
+                styles={{
+                  dropdown: {
+                    backgroundColor: 'var(--color-bg-light)',
+                    border: '1px solid var(--color-accent)',
+                    borderRadius: '8px',
+                  },
+                  label: {
+                    color: 'var(--color-neutral)',
+                    fontWeight: 'bold',
+                    fontSize: '1rem',
+                  },
+                  item: {
+                    color: 'var(--color-neutral)',
+                    fontSize: '1rem',
+                    '&:hover': {
+                      backgroundColor: 'var(--color-accent)',
+                      color: 'var(--color-bg-light)',
+                    },
+                  },
+                }}
+              >
+                <Menu.Target>
+                  <Button 
+                    className={`transparent-button ${classes.loginButton}`}
+                    size="sm"
+                  >
+                    {userType === 'applicant' ? 'Applicant' : 'Recruiter'} Menu
+                  </Button>
+                </Menu.Target>
+
+                <Menu.Dropdown>
+                  <Menu.Label>Account Options</Menu.Label>
+                  <Menu.Item 
+                    component="a" 
+                    href={userType === 'applicant' ? '/applicant/dashboard' : '/recruiter/dashboard'}
+                  >
+                    Dashboard
+                  </Menu.Item>
+                  <Menu.Item onClick={handleLogout}>
+                    Logout
+                  </Menu.Item>
+                </Menu.Dropdown>
+              </Menu>
+            ) : (
+              <Menu 
+                shadow="md" 
+                width={200}
+                position="bottom-end"
+                offset={5}
+                styles={{
+                  dropdown: {
+                    backgroundColor: 'var(--color-bg-light)',
+                    border: '1px solid var(--color-accent)',
+                    borderRadius: '8px',
+                  },
+                  label: {
+                    color: 'var(--color-neutral)',
+                    fontWeight: 'bold',
+                    fontSize: '1rem',
+                  },
+                  item: {
+                    color: 'var(--color-neutral)',
+                    fontSize: '1rem',
+                    '&:hover': {
+                      backgroundColor: 'var(--color-accent)',
+                      color: 'var(--color-bg-light)',
+                    },
+                  },
+                }}
+              >
+                <Menu.Target>
+                  <Button 
+                    className={`transparent-button ${classes.loginButton}`}
+                    size="sm"
+                  >
+                    Log In
+                  </Button>
+                </Menu.Target>
+
+                <Menu.Dropdown>
+                  <Menu.Label>Choose Login Type</Menu.Label>
+                  <Menu.Item component="a" href="/applicant-login">
+                    Applicant Login
+                  </Menu.Item>
+                  <Menu.Item component="a" href="/recruiter-login">
+                    Recruiter Login
+                  </Menu.Item>
+                </Menu.Dropdown>
+              </Menu>
+            )}
           </div>
         </Container>
       </Box>
+      
       <Box className={classes.mainWrapper}>
         <Container size="lg" className={classes.innerContainer}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div className={classes.mainContainer}>
             <Anchor href="/" className={classes.logo}>
-              <img src="/logo.png" alt="Logo" height={80} />
+              <img src="/logo.png" alt="Logo" />
             </Anchor>
-            <Group gap={48}>
+            <Group className={classes.mainLinksGroup}>
               {mainItems}
             </Group>
           </div>

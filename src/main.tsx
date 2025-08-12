@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { MantineProvider, createTheme } from '@mantine/core'
+import '@mantine/core/styles.css' // Add this line if missing
 import App from './App'
 import './index.css';
 
@@ -27,7 +28,7 @@ const theme = createTheme({
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
-        <MantineProvider defaultColorScheme="light">
+        <MantineProvider theme={theme} defaultColorScheme="light">
             <BrowserRouter>
                 <App />
             </BrowserRouter>
