@@ -1,0 +1,164 @@
+.dashboardContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.dashboardTitle {
+  font-size: 32pt;
+  text-align: center;
+  color: var(--color-neutral);
+  margin-bottom: 2rem;
+  padding-top: 1rem;
+}
+
+.alertMessage {
+  margin-bottom: 1rem;
+}
+
+.tabsContainer {
+  margin-bottom: 2rem;
+}
+
+.tabPanel {
+  margin-top: 1rem;
+}
+
+.sectionCard {
+  padding: 1.5rem;
+}
+
+.sectionTitle {
+  margin-bottom: 1rem;
+  color: var(--color-neutral);
+}
+
+.formStack {
+  gap: 1rem;
+}
+
+.formGroup {
+  gap: 1rem;
+}
+
+.workExperienceCard {
+  padding: 1rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.experienceHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.experienceTitle {
+  font-weight: 500;
+  color: var(--color-neutral);
+}
+
+.removeButton {
+  background-color: transparent;
+  border: 1px solid #ff6b6b;
+  color: #ff6b6b;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.removeButton:hover {
+  background-color: #ff6b6b;
+  color: white;
+}
+
+.addExperienceButton {
+  background-color: transparent;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.addExperienceButton:hover {
+  background-color: var(--color-accent);
+  color: var(--color-bg-light);
+}
+
+.formDescription {
+  font-size: 0.875rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.saveButton {
+  background-color: transparent;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  padding: 0.75rem 2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.saveButton:hover {
+  background-color: var(--color-accent);
+  color: var(--color-bg-light);
+}
+
+.saveButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Loading state */
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  color: var(--color-neutral);
+  font-size: 1.1rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .dashboardContainer {
+    padding: 1rem;
+  }
+  
+  .dashboardTitle {
+    font-size: 24pt;
+    margin-bottom: 1.5rem;
+  }
+  
+  .sectionCard {
+    padding: 1rem;
+  }
+  
+  .formGroup {
+    flex-direction: column;
+  }
+  
+  .experienceHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
