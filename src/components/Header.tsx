@@ -100,7 +100,10 @@ export default function Header() {
                   >
                     Dashboard
                   </Menu.Item>
-                  <Menu.Item onClick={handleLogout}>
+                  <Menu.Item 
+                    onClick={handleLogout}
+                    style={{ color: 'red' }}
+                  >
                     Logout
                   </Menu.Item>
                 </Menu.Dropdown>

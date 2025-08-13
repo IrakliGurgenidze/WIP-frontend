@@ -10,6 +10,7 @@ import RecruiterSignup from './pages/RecruiterSignup'
 import ApplicantSignup from './pages/ApplicantSignup'
 import ApplicantDashboard from './pages/ApplicantDashboard'
 import RecruiterDashboard from './pages/RecruiterDashboard'
+import CandidateSearch from './pages/CandidateSearch'
 import ProtectedRoute from './components/ProtectedRoute'
 
 export default function App() {
@@ -40,6 +41,14 @@ export default function App() {
           element={
             <ProtectedRoute requiredUserType="recruiter">
               <RecruiterDashboard />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/recruiter/candidates" 
+          element={
+            <ProtectedRoute requiredUserType="recruiter">
+              <CandidateSearch />
             </ProtectedRoute>
           } 
         />

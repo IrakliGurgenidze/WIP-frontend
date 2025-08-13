@@ -1,0 +1,240 @@
+.searchContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.searchTitle {
+  font-size: 32pt;
+  text-align: center;
+  color: var(--color-neutral);
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+}
+
+.searchSubtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.alertMessage {
+  margin-bottom: 1rem;
+}
+
+.filtersCard {
+  padding: 1.5rem;
+  background-color: var(--color-bg-light);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.filtersHeader {
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.filtersStack {
+  gap: 1rem;
+}
+
+.filterGroup {
+  gap: 1rem;
+}
+
+.searchButtonGroup {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.searchButton {
+  background-color: var(--color-accent);
+  color: var(--color-bg-light);
+  border: none;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.searchButton:hover {
+  background-color: #a56fb8;
+  transform: translateY(-1px);
+}
+
+.resultsSection {
+  margin-top: 2rem;
+}
+
+.resultsHeader {
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-accent);
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  gap: 1rem;
+  color: var(--color-neutral);
+}
+
+.noResultsCard {
+  padding: 3rem;
+  text-align: center;
+  background-color: var(--color-bg-light);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.resultsStack {
+  gap: 1rem;
+}
+
+.candidateCard {
+  padding: 1.5rem;
+  background-color: var(--color-bg-light);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  border: 1px solid #e0e0e0;
+}
+
+.candidateCard:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.candidateInfo {
+  flex: 1;
+}
+
+.candidateHeader {
+  margin-bottom: 0.5rem;
+  align-items: center;
+}
+
+.candidateEducation {
+  margin-bottom: 1rem;
+}
+
+.skillsGroup {
+  margin-bottom: 0.75rem;
+  align-items: flex-start;
+}
+
+.locationsGroup {
+  margin-bottom: 0.75rem;
+  align-items: flex-start;
+}
+
+.experienceSection {
+  margin-bottom: 0.5rem;
+}
+
+.candidateLinks {
+  gap: 0.5rem;
+  min-width: 120px;
+}
+
+.candidateLink {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.candidateLink:hover {
+  color: #a56fb8;
+  text-decoration: underline;
+}
+
+.paginationBottom {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Form input styling */
+.filtersStack .mantine-TextInput-root,
+.filtersStack .mantine-Select-root,
+.filtersStack .mantine-TagsInput-root,
+.filtersStack .mantine-NumberInput-root {
+  margin-bottom: 0.5rem;
+}
+
+.filtersStack .mantine-TextInput-label,
+.filtersStack .mantine-Select-label,
+.filtersStack .mantine-TagsInput-label,
+.filtersStack .mantine-NumberInput-label {
+  color: var(--color-neutral);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .searchContainer {
+    padding: 1rem;
+  }
+  
+  .searchTitle {
+    font-size: 24pt;
+    margin-bottom: 1rem;
+  }
+  
+  .filtersCard {
+    padding: 1rem;
+  }
+  
+  .filterGroup {
+    flex-direction: column;
+  }
+  
+  .candidateCard {
+    padding: 1rem;
+  }
+  
+  .candidateHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .skillsGroup,
+  .locationsGroup {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+/* Badge styling enhancements */
+.skillsGroup .mantine-Badge-root {
+  background-color: #f0f0f0;
+  color: var(--color-neutral);
+  border: 1px solid #d0d0d0;
+}
+
+.candidateHeader .mantine-Badge-root {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+.interestsGroup {
+  margin-bottom: 0.75rem;
+  align-items: flex-start;
+}
+
+/* Badge styling for interests */
+.interestsGroup .mantine-Badge-root {
+  background-color: #f3e8ff;
+  color: #7c3aed;
+  border: 1px solid #c4b5fd;
+}

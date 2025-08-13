@@ -17,6 +17,13 @@ import {
   Tabs
 } from '@mantine/core'
 import { logout, makeAuthenticatedRequest } from '../utils/auth'
+import { 
+  EXPERIENCE_LEVELS,
+  AVAILABILITY_OPTIONS,
+  COMMON_SKILLS,
+  COMMON_INTERESTS,
+  COMMON_LOCATIONS
+} from '../utils/constants'
 import classes from './ApplicantDashboard.module.css'
 
 interface WorkExperience {
@@ -63,37 +70,6 @@ interface ApplicantProfile {
   // Work experience (handled separately)
   workExperience?: WorkExperience[]
 }
-
-const experienceLevels = [
-  { value: 'entry', label: 'Entry Level' },
-  { value: 'junior', label: 'Junior' },
-  { value: 'mid', label: 'Mid Level' },
-  { value: 'senior', label: 'Senior' }
-]
-
-const availabilityOptions = [
-  { value: 'full-time', label: 'Full-time' },
-  { value: 'part-time', label: 'Part-time' },
-  { value: 'internship', label: 'Internship' },
-  { value: 'contract', label: 'Contract' }
-]
-
-const commonSkills = [
-  'JavaScript', 'TypeScript', 'React', 'Node.js', 'Python', 'Java', 'C++', 'SQL',
-  'Git', 'Docker', 'AWS', 'Azure', 'HTML/CSS', 'MongoDB', 'PostgreSQL', 'Redis',
-  'GraphQL', 'REST APIs', 'Agile', 'Scrum', 'Project Management', 'Leadership'
-]
-
-const commonInterests = [
-  'Web Development', 'Mobile Development', 'Data Science', 'Machine Learning',
-  'Cybersecurity', 'Cloud Computing', 'DevOps', 'UI/UX Design', 'Product Management',
-  'Artificial Intelligence', 'Blockchain', 'Game Development', 'IoT', 'Fintech'
-]
-
-const commonLocations = [
-  'New York, NY', 'San Francisco, CA', 'Seattle, WA', 'Austin, TX', 'Boston, MA',
-  'Chicago, IL', 'Los Angeles, CA', 'Denver, CO', 'Atlanta, GA', 'Remote', 'Hybrid'
-]
 
 export default function ApplicantDashboard() {
   const [profile, setProfile] = useState<ApplicantProfile>({
@@ -555,7 +531,7 @@ export default function ApplicantDashboard() {
                   placeholder="Type and press Enter to add skills"
                   value={profile.skills}
                   onChange={(value) => setProfile({ ...profile, skills: value })}
-                  data={commonSkills}
+                  data={COMMON_SKILLS}
                   splitChars={[',', ' ', '|']}
                   maxTags={25}
                   clearable
@@ -570,7 +546,7 @@ export default function ApplicantDashboard() {
                   placeholder="Type and press Enter to add interests"
                   value={profile.interests}
                   onChange={(value) => setProfile({ ...profile, interests: value })}
-                  data={commonInterests}
+                  data={COMMON_INTERESTS}
                   splitChars={[',', ' ', '|']}
                   maxTags={20}
                   clearable
@@ -582,7 +558,7 @@ export default function ApplicantDashboard() {
               <Select
                 label="Experience Level"
                 placeholder="Select your experience level"
-                data={experienceLevels}
+                data={EXPERIENCE_LEVELS}
                 value={profile.experienceLevel}
                 onChange={(value) => setProfile({ ...profile, experienceLevel: value || '' })}
                 clearable
@@ -601,7 +577,7 @@ export default function ApplicantDashboard() {
                   placeholder="Type and press Enter to add locations"
                   value={profile.preferredLocations}
                   onChange={(value) => setProfile({ ...profile, preferredLocations: value })}
-                  data={commonLocations}
+                  data={COMMON_LOCATIONS}
                   splitChars={[',', ' ', '|']}
                   maxTags={15}
                   clearable
@@ -625,7 +601,7 @@ export default function ApplicantDashboard() {
                 <Select
                   label="Availability"
                   placeholder="Select availability"
-                  data={availabilityOptions}
+                  data={AVAILABILITY_OPTIONS}
                   value={profile.availability}
                   onChange={(value) => setProfile({ ...profile, availability: value || '' })}
                   clearable

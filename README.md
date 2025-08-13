@@ -2,7 +2,7 @@
 Frontend repository for "Apture" - The recruitment platform of the Future
 
 ## Overview
-This is a React TypeScript application built with Vite for fast development builds. The project uses Mantine v7 for UI components and implements a modern, responsive design for a recruitment platform targeting early-career professionals. The application features complete authentication, profile management, and real-time work experience tracking for applicants.
+This is a React TypeScript application built with Vite for fast development builds. The project uses Mantine v7 for UI components and implements a modern, responsive design for a recruitment platform targeting early-career professionals. The application features complete authentication, profile management, real-time work experience tracking for applicants, and advanced candidate search capabilities for recruiters.
 
 ## Tech Stack
 - **Framework**: React 18 with TypeScript
@@ -41,9 +41,13 @@ src/
 │   ├── RecruiterLogin.tsx     # Recruiter authentication
 │   ├── RecruiterSignup.tsx    # Recruiter registration
 │   ├── RecruiterDashboard.tsx # Protected recruiter dashboard
+│   ├── RecruiterDashboard.module.css # Recruiter dashboard styles
+│   ├── CandidateSearch.tsx    # Advanced candidate search for recruiters
+│   ├── CandidateSearch.module.css # Search-specific styles
 │   └── Login.module.css       # Shared authentication styles
 └── utils/                     # Utility functions
-    └── auth.ts                # Authentication utilities and API helpers
+    ├── auth.ts                # Authentication utilities and API helpers
+    └── constants.ts           # Shared constants for forms and data
 ```
 
 ## Authentication System
@@ -66,6 +70,66 @@ The application supports two user types that align with the backend Prisma schem
 - **Route Protection**: Dashboard routes require authentication and proper role
 - **Dynamic Header**: Menu options change based on authentication status with red logout text
 - **Cross-role Prevention**: Applicants cannot access recruiter features and vice versa
+
+## Recruiter Features
+
+### RecruiterDashboard (`RecruiterDashboard.tsx`)
+Comprehensive profile management system for recruiters with multi-tab interface.
+
+**Profile Data Structure:**
+```typescript
+interface RecruiterProfile {
+  // Personal Information
+  firstName: string
+  lastName: string
+  phoneNumber: string
+  
+  // Company Information
+  company: string
+  position: string
+  department: string
+  companySize: string          // startup, small, medium, large, enterprise
+  industry: string
+  
+  // Contact Information
+  linkedinUrl: string
+  companyUrl: string
+  
+  // Recruiting Preferences
+  hiringSectors: string[]      // Areas they recruit for
+  experienceLevels: string[]   // Experience levels they hire
+  
+  // Additional Information
+  other: string[]             // Miscellaneous information
+}
+```
+
+**Dashboard Features:**
+- **Personal Info Tab**: Contact information and LinkedIn profile
+- **Company Info Tab**: Company details, position, department, and industry
+- **Recruiting Preferences Tab**: Hiring sectors and experience levels
+- **Additional Info Tab**: Free-form additional information
+
+### CandidateSearch (`CandidateSearch.tsx`)
+Advanced search and filtering system for recruiters to find qualified candidates.
+
+**Search Capabilities:**
+- **Academic Filters**: Graduation year, major, university, GPA range
+- **Skills-Based Search**: Multiple skill requirements with suggestions
+- **Location Preferences**: Candidate location preferences including remote/hybrid
+- **Experience Level**: Filter by candidate experience level
+- **Pagination**: Efficient browsing through large candidate pools
+
+**Search Interface:**
+- **Advanced Filters Card**: Organized filter options with clear/reset functionality
+- **Results Display**: Professional candidate cards with key information
+- **Quick Links**: Direct access to candidate portfolios, LinkedIn, and GitHub
+- **Responsive Design**: Mobile-optimized search and results interface
+
+**Backend Integration:**
+- **Search Endpoint**: `GET /api/search/applicants` with comprehensive query parameters
+- **Pagination Support**: Server-side pagination with page controls
+- **Error Handling**: Robust error display and network failure recovery
 
 ## Applicant Profile Management
 
@@ -140,6 +204,26 @@ interface WorkExperience {
 - **Success/Error Messages**: Real-time user feedback
 - **Responsive Design**: Mobile-friendly layout
 
+## Shared Constants System
+
+### Constants Architecture (`utils/constants.ts`)
+Centralized constants file providing consistent data across all components:
+
+**Key Constant Categories:**
+- **Experience Levels**: Entry, Junior, Mid, Senior with consistent labeling
+- **Company Sizes**: Startup through Enterprise with employee count ranges
+- **Skills & Technologies**: Comprehensive list of technical and soft skills
+- **Industries & Departments**: Professional categories for company information
+- **Hiring Sectors**: Recruitment focus areas for recruiters
+- **Geographic Locations**: Cities, states, and remote/hybrid options
+- **Availability Options**: Full-time, part-time, internship, contract
+
+**Benefits:**
+- **Single Source of Truth**: All form options defined in one location
+- **Type Safety**: TypeScript types exported for better development experience
+- **Maintainability**: Easy to add/modify options across entire application
+- **Consistency**: Uniform options across applicant profiles, recruiter preferences, and search filters
+
 ## Backend Integration
 
 ### Environment Configuration
@@ -153,7 +237,7 @@ VITE_BACKEND_BASE_URL=https://your-backend-url.com
 - `POST /api/auth/signup` - User registration with role specification
 - `POST /api/auth/login` - User authentication returning JWT token
 
-#### Profile Management Endpoints
+#### Applicant Profile Management
 - `GET /api/profile/applicant` - Retrieve complete applicant profile with work experience
 - `PUT /api/profile/applicant` - Update applicant profile (excluding work experience)
 
@@ -161,6 +245,13 @@ VITE_BACKEND_BASE_URL=https://your-backend-url.com
 - `POST /api/profile/applicant/work-experience` - Create new work experience entry
 - `PUT /api/profile/applicant/work-experience/:id` - Update specific work experience
 - `DELETE /api/profile/applicant/work-experience/:id` - Delete work experience entry
+
+#### Recruiter Profile Management
+- `GET /api/profile/recruiter` - Retrieve complete recruiter profile
+- `PUT /api/profile/recruiter` - Update recruiter profile information
+
+#### Candidate Search Endpoints
+- `GET /api/search/applicants` - Advanced candidate search with filtering and pagination
 
 ### API Integration Features
 - **Authenticated Requests**: All profile operations require valid JWT tokens
@@ -242,6 +333,35 @@ Comprehensive profile management system for job applicants.
 - **Visual Feedback**: Loading states, success messages, and error handling
 - **Mobile Responsive**: Optimized for all device sizes
 
+### RecruiterDashboard Component (`RecruiterDashboard.tsx`)
+Comprehensive profile management system for recruiters.
+
+**Architecture:**
+- **State Management**: Separate state for recruiter profile data
+- **API Integration**: Real-time synchronization with backend
+- **Form Handling**: Dynamic form validation and submission
+- **User Experience**: Intuitive tab-based interface with clear feedback
+
+**Key Features:**
+- **Profile Persistence**: Automatic loading and saving of recruiter data
+- **Dynamic Form Sections**: Show/hide fields based on user input
+- **Visual Feedback**: Loading states, success messages, and error handling
+- **Mobile Responsive**: Optimized for all device sizes
+
+### CandidateSearch Component (`CandidateSearch.tsx`)
+Advanced search and filtering system for recruiters.
+
+**Architecture:**
+- **State Management**: Local state for search criteria and results
+- **API Integration**: Server-side search with pagination
+- **User Experience**: Instant feedback on search criteria changes
+
+**Key Features:**
+- **Real-Time Search**: Updates results as criteria are modified
+- **Multi-Filter Support**: Combine multiple filters for precise results
+- **Pagination Controls**: Navigate through paginated results
+- **Responsive Design**: Mobile-friendly search interface
+
 ### ProtectedRoute Component (`ProtectedRoute.tsx`)
 Wrapper component that restricts access to authenticated users.
 
@@ -278,14 +398,15 @@ Sophisticated system for managing professional experience:
 ## Development Guidelines
 
 ### Adding New Profile Fields
-1. Update TypeScript interfaces in `ApplicantDashboard.tsx`
+1. Update TypeScript interfaces in respective dashboard components
 2. Add form inputs in appropriate tab panel
 3. Include field in save/load operations
 4. Update backend API to handle new fields
+5. Add constants to `utils/constants.ts` if applicable
 
 ### Implementing New Dashboard Features
 1. Create new tab panel in the Tabs component
-2. Add corresponding CSS classes in `ApplicantDashboard.module.css`
+2. Add corresponding CSS classes in component's module.css file
 3. Implement state management and API integration
 4. Add proper form validation and error handling
 
@@ -358,17 +479,19 @@ VITE_BACKEND_BASE_URL=http://localhost:8080
 - **Responsive Design**: Mobile-friendly layouts across all components
 - **API Integration**: Complete backend synchronization with error handling
 - **User Experience**: Loading states, success/error feedback, intuitive navigation
+- **Complete Recruiter Dashboard**: Full profile management for hiring managers
+- **Advanced Candidate Search**: Multi-filter search system with pagination
+- **Shared Constants System**: Centralized data management for consistency
 
 ### In Progress 
-- **Recruiter Dashboard**: Enhanced functionality for hiring managers
 - **Job Posting System**: Allow recruiters to create and manage job listings
 - **Application System**: Enable applicants to apply to jobs
 
 ## Next Steps
 - **Email Verification**: Implement account verification for new users
 - **Password Reset**: Add secure password recovery functionality
-- **Enhanced Recruiter Features**: Complete recruiter dashboard with job management
-- **Search and Filtering**: Advanced candidate and job search capabilities
+- **Enhanced Recruiter Features**: Job posting and management capabilities
+- **Application Management**: Complete job application workflow
 - **Real-Time Notifications**: Live updates for applications and messages
 - **File Upload**: Resume and portfolio document management
 - **Analytics Dashboard**: Insights for recruiters on candidate engagement
@@ -377,9 +500,34 @@ VITE_BACKEND_BASE_URL=http://localhost:8080
 
 ## Development History
 
-### 8/13/2025 - Major Profile Management Implementation
+### 8/13/2025 - Recruiter Features & Search Implementation
 
 **Work Completed:**
+- **Complete Recruiter Dashboard**: Multi-tab profile management for recruiters
+- **Advanced Candidate Search**: Comprehensive search system with filtering capabilities
+- **Shared Constants System**: Centralized constants file for consistent data across components
+- **Enhanced UI Consistency**: Unified styling across applicant and recruiter dashboards
+- **Backend API Integration**: Full CRUD operations for recruiter profiles and candidate search
+- **Search Interface**: Professional candidate results display with pagination
+- **Route Protection**: Extended protected routes for recruiter-specific features
+
+**Technical Achievements:**
+- Implemented comprehensive TypeScript interfaces for recruiter profiles
+- Built advanced search functionality with multiple filter options
+- Created shared constants architecture for maintainable data management
+- Established consistent UI patterns across different user dashboards
+- Integrated backend candidate search API with robust error handling
+
+**User Experience Improvements:**
+- Intuitive recruiter profile organization with company-focused tabs
+- Advanced candidate search with clear filter options and results display
+- Consistent form styling and interaction patterns across all dashboards
+- Professional candidate cards with quick access to portfolios and profiles
+- Mobile-responsive design for all new recruiter features
+
+### 8/13/2025 - Major Profile Management Implementation
+
+**Completed:**
 - Full ApplicantDashboard Implementation: Complete overhaul with comprehensive profile management
 - Backend API Integration: Full CRUD operations for profiles and work experience
 - Advanced UI Components: TagsInput integration for skills, interests, and locations
@@ -387,6 +535,13 @@ VITE_BACKEND_BASE_URL=http://localhost:8080
 - Enhanced UX: Loading states, success/error messaging, and visual feedback
 - Responsive Design: Mobile-optimized layouts with CSS Modules
 - Authentication Enhancements: Improved header with red logout text, removed redundant buttons
+
+**Technical Achievements:**
+- Implemented TypeScript interfaces for complete type safety
+- Created sophisticated state management for profile and work experience data
+- Built real-time synchronization system with optimistic updates
+- Developed advanced form validation and error handling
+- Established comprehensive API integration patterns
 
 **User Experience Improvements:**
 - Intuitive tab-based profile organization
